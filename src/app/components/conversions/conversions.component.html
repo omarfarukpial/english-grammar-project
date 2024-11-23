@@ -1,0 +1,48 @@
+<div class="flex flex-column align-items-center">
+    <div>
+        <h1 class="text-purple-800">{{conversionTitle}}</h1>
+    </div>
+    <div class="flex flex-column align-items-center gap-3 md:flex-row ">
+        <p-card [style]="{'width': '250px'}">
+            <div class="flex flex-column align-items-center gap-2">
+                <div class="w-full">
+                    <p-dropdown [options]="conversionOptions" [(ngModel)]="selectedFromConversionOption" [style]="{'width': '100%'}" />
+                </div>
+                <div>
+                    <span><i class="pi pi-arrow-down font-bold text-purple-800"></i></span>
+                </div>
+                <div class="w-full">
+                    <p-dropdown [options]="conversionOptions" [(ngModel)]="selectedToConversionOption" [style]="{'width': '100%'}" />
+                </div>
+            </div>
+        </p-card>
+        <p-card [style]="{'width': '250px'}">
+            <div class="flex flex-column align-items-center gap-2">
+                <textarea 
+                    rows="4"
+                    [(ngModel)]="inputText"
+                    pInputTextarea 
+                    placeholder="Write your sentence here..."
+                    [style]="{'width': '100%'}"
+                    >
+                </textarea>
+            </div>
+        </p-card>
+        <p-button label="Convert" (onClick)="onConvertClick()" />
+
+    
+        <p-card [style]="{'width': '250px'}">
+            <div class="flex flex-column align-items-center gap-2">
+                <textarea 
+                    rows="4"
+                    [(ngModel)]="outputText"
+                    pInputTextarea 
+                    placeholder="Output will be shown here..."
+                    [style]="{'width': '100%'}"
+                    >
+                </textarea>
+            </div>
+        </p-card>
+    </div>
+
+</div>
