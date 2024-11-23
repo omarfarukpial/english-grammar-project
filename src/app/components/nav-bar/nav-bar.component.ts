@@ -27,7 +27,7 @@ export class NavBarComponent {
     {
       label: 'Ask AI',
       icon: 'pi pi-microchip-ai',
-      routerLink: '/contact',
+      routerLink: 'ask-ai',
     }
   ];
 }

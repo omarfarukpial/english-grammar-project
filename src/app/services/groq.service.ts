@@ -26,4 +26,21 @@ export class GroqService {
     }
     return this.httpClient.post(this.GROQ_ENDPOINT, baseQuery, {headers});
   }
+
+  getAnsFromAI(question: string | undefined): Observable<any> {
+    const headers = {
+      'Authorization': `Bearer ${this.API_KEY}`,
+      'Content-Type': 'application/json'
+    };
+    const baseQuery = {
+      "model": "gemma-7b-it",
+      "messages": [{
+          "role": "user",
+          "content": `${question}`
+      }]
+    }
+    return this.httpClient.post(this.GROQ_ENDPOINT, baseQuery, {headers});
+  }
+
+
 }
