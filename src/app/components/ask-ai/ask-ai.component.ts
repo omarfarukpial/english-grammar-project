@@ -28,7 +28,7 @@ export class AskAiComponent {
     if (this.inputText && this.inputText.trim().length > 0)
     this.groqService.getAnsFromAI(this.inputText).subscribe(res => {
       if (res && res.choices && res.choices.length > 0) {
-        this.outputText = res.choices[0].message.content;
+        this.outputText = res.choices[0].message.content.replace(/<think>.*?<\/think>/gs,'').trim();;
       }
     });
   }

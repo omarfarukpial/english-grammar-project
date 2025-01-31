@@ -1,49 +1,92 @@
-<div class="flex flex-column align-items-center">
-    <div>
-        <h1 class="text-purple-800">{{conversionTitle}}</h1>
-    </div>
-    <div class="flex flex-column align-items-center gap-3 md:flex-row ">
-        <p-card [style]="{'width': '250px'}">
-            <div class="flex flex-column align-items-center gap-2">
-                <div class="w-full">
-                    <p-dropdown [options]="conversionOptions" [(ngModel)]="selectedFromConversionOption" [style]="{'width': '100%'}" />
-                </div>
-                <div>
-                    <span><i class="pi pi-arrow-down font-bold text-purple-800"></i></span>
-                </div>
-                <div class="w-full">
-                    <p-dropdown [options]="conversionOptions" [(ngModel)]="selectedToConversionOption" [style]="{'width': '100%'}" />
-                </div>
-            </div>
-        </p-card>
-        <p-card [style]="{'width': '250px'}">
-            <div class="flex flex-column align-items-center gap-2">
-                <textarea 
-                    rows="4"
-                    [(ngModel)]="inputText"
-                    pInputTextarea 
-                    placeholder="Write your sentence here..."
-                    [style]="{'width': '100%'}"
-                    >
-                </textarea>
-            </div>
-        </p-card>
-        <p-button label="Convert" (onClick)="onConvertClick()" />
+<div class="flex flex-column align-items-center min-h-screen bg-gray-50 p-4">
+    <h1 class="text-4xl font-bold mb-6 gradient-title">
+        <span class="bg-gradient-to-r from-purple-600 to-blue-500 text-transparent bg-clip-text">
+            {{conversionTitle}}
+        </span>
+    </h1>
 
-    
-        <p-card [style]="{'width': '250px'}">
-            <div class="flex flex-column align-items-center gap-2">
-                <textarea 
-                    rows="4"
-                    [(ngModel)]="outputText"
-                    pInputTextarea 
-                    [autoResize]="true"
-                    placeholder="Output will be shown here..."
-                    [style]="{'width': '100%'}"
-                    >
-                </textarea>
-            </div>
-        </p-card>
-    </div>
+    <div class="flex flex-col md:flex-row gap-6 align-items-center justify-content-center w-full max-w-6xl">
+        <!-- Conversion Controls -->
+        <div class="flex flex-col md:flex-row gap-6 align-items-center">
+            <p-card class="w-full md:w-30rem shadow-lg hover:shadow-xl transition-all">
+                <div class="flex flex-col gap-4 p-3">
+                    <div class="grid">
+                        <div class="col-12 md:col-5 flex flex-column gap-2">
+                            <label class="text-sm font-medium text-gray-600">From</label>
+                            <p-dropdown [options]="conversionOptions" 
+                                      [(ngModel)]="selectedFromConversionOption"
+                                      class="w-full" 
+                                      [filter]="true"
+                                      placeholder="Select source format">
+                            </p-dropdown>
+                        </div>
+                        
+                        <div class="col-12 md:col-2 flex align-items-center justify-content-center">
+                            <button pButton 
+                                  icon="pi pi-arrows-h" 
+                                  class="p-button-rounded p-button-text text-purple-600"
+                                  [style]="{'transform': 'rotate(90deg)'}"
+                                  style="transform: rotate(90deg)"></button>
+                        </div>
 
+                        <div class="col-12 md:col-5 flex flex-column gap-2">
+                            <label class="text-sm font-medium text-gray-600">To</label>
+                            <p-dropdown [options]="conversionOptions" 
+                                      [(ngModel)]="selectedToConversionOption"
+                                      class="w-full" 
+                                      [filter]="true"
+                                      placeholder="Select target format">
+                            </p-dropdown>
+                        </div>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+
+        <!-- Input/Output Section -->
+        <div class="flex flex-col md:flex-row gap-6 align-items-stretch w-full md:w-auto">
+            <!-- Input Card -->
+            <p-card class="w-full md:w-30rem shadow-lg hover:shadow-xl transition-all">
+                <div class="flex flex-column gap-3 h-full">
+                    <label class="text-sm font-medium text-gray-600">Input</label>
+                    <textarea 
+                        rows="5"
+                        [(ngModel)]="inputText"
+                        pInputTextarea 
+                        placeholder="Enter text to convert..."
+                        class="w-full p-3 border-round-lg border-1 border-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 h-full">
+                    </textarea>
+                </div>
+            </p-card>
+
+            <!-- Convert Button -->
+            <div class="flex align-items-center justify-content-center">
+                <p-button 
+                    label="Convert" 
+                    icon="pi pi-sync" 
+                    (onClick)="onConvertClick()"
+                    class="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 border-none h-3rem"
+                    [style]="{'min-width': '120px'}">
+                </p-button>
+            </div>
+
+            <!-- Output Card -->
+            <p-card class="w-full md:w-30rem shadow-lg hover:shadow-xl transition-all">
+                <div class="flex flex-column gap-3 h-full">
+                    <div class="flex justify-content-between align-items-center">
+                        <label class="text-sm font-medium text-gray-600">Output</label>
+                    </div>
+                    <textarea 
+                        rows="5"
+                        [(ngModel)]="outputText"
+                        pInputTextarea 
+                        [autoResize]="true"
+                        placeholder="Converted text will appear here..."
+                        class="w-full p-3 border-round-lg border-1 border-300 bg-gray-50 font-mono h-full"
+                        [readonly]="true">
+                    </textarea>
+                </div>
+            </p-card>
+        </div>
+    </div>
 </div>

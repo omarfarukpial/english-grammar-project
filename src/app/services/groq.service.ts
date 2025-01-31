@@ -18,10 +18,10 @@ export class GroqService {
       'Content-Type': 'application/json'
     };
     const baseQuery = {
-      "model": "whisper-large-v3-turbo",
+      "model": "deepseek-r1-distill-llama-70b",
       "messages": [{
           "role": "user",
-          "content": `Please perform ${title} on the following sentence from ${fromState} to ${toState} only give me the answer not any extra text, use basic english ${title} rules. If the sentence is not in ${fromState} or already in ${toState} then do not convert it and give the message accordingly. The sentence is: '${message}'`
+          "content": `Please perform ${title} on the following sentence from ${fromState} to ${toState} only give me the answer not any extra text, I repeat only answer setnece, not any extra words. use basic english ${title} rules. If the sentence is not in ${fromState} or already in ${toState} then do not convert it and give the message accordingly. The sentence is: '${message}'`
       }]
     }
     return this.httpClient.post(this.GROQ_ENDPOINT, baseQuery, {headers});
@@ -33,7 +33,7 @@ export class GroqService {
       'Content-Type': 'application/json'
     };
     const baseQuery = {
-      "model": "gemma-7b-it",
+      "model": "deepseek-r1-distill-llama-70b",
       "messages": [{
           "role": "user",
           "content": `${question}`

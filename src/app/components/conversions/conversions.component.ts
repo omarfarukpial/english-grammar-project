@@ -36,7 +36,7 @@ export class ConversionsComponent {
       this.groqService.getConversion(this.conversionTitle, this.inputText, this.selectedFromConversionOption, this.selectedToConversionOption).subscribe(
         res => {
           if (res && res.choices && res.choices.length > 0) {
-            this.outputText = res.choices[0].message.content;
+            this.outputText = res.choices[0].message.content.replace(/<think>.*?<\/think>/gs,'').trim();
           }
         }
       );
