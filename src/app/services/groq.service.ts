@@ -18,7 +18,7 @@ export class GroqService {
       'Content-Type': 'application/json'
     };
     const baseQuery = {
-      "model": "gemma-7b-it",
+      "model": "whisper-large-v3-turbo",
       "messages": [{
           "role": "user",
           "content": `Please perform ${title} on the following sentence from ${fromState} to ${toState} only give me the answer not any extra text, use basic english ${title} rules. If the sentence is not in ${fromState} or already in ${toState} then do not convert it and give the message accordingly. The sentence is: '${message}'`
